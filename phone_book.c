@@ -19,7 +19,7 @@ int search(FILE *,char *);
 void list(FILE *);
 int delete(FILE *,char *);
 
-/* Utility functions  */
+/* Utility functions */
 FILE * open_db_file(); // Opens the database file. Prints error and quits if it's not available
 
 void print_usage(char *, char *); // Prints usage
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     } 
 
     if(strcmp(argv[1], "add") == 0) 
-    {   /* Handle add */
+    { /* Handle add */
         if(argc != 4) 
         {
             print_usage("Improper arguments for add", argv[0]);
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
     else if(strcmp(argv[1], "list") == 0) 
-    {  /* Handle list */
+    { /* Handle list */
         if(argc != 2) 
         {
             print_usage("Improper arguments for list", argv[0]);
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         exit(0);
     } 
     else if(strcmp(argv[1], "search") == 0) 
-    {  /* Handle search */
+    { /* Handle search */
         if(argc != 3)
         {
             print_usage("Improper arguments for search",argv[0]);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
         exit(0);
     } 
     else if(strcmp(argv[1], "delete") == 0) 
-    {  /* Handle delete */
+    { /* Handle delete */
         if(argc != 3) 
         {
             print_usage("Improper arguments for delete", argv[0]);
@@ -140,13 +140,13 @@ void print_usage(char *message, char *progname)
     printf("Usage: %s command arguments\n", progname);
     printf("\nAvailable commands: \n-------------------\n");
     printf("add name phonenumber\n");
-    printf("    Used to add a new name to the database.\n    name and phone number should not have any\n    spaces in them\n");
+    printf(" Used to add a new name to the database.\n name and phone number should not have any\n spaces in them\n");
     printf("search name\n");
-    printf("    Prints the phone number of the given name\n    if it's there in the database. Prints\n    'no match' if not found\n");
+    printf(" Prints the phone number of the given name\n if it's there in the database. Prints\n 'no match' if not found\n");
     printf("list\n");
-    printf("    Lists all names and phone numbers in the\n    system along with a total count at the end.\n");
+    printf(" Lists all names and phone numbers in the\n system along with a total count at the end.\n");
     printf("delete name\n");
-    printf("    Deletes the entry for the name in the database.\n    Prints 'no match' if there's no such name.\n");
+    printf(" Deletes the entry for the name in the database.\n Prints 'no match' if there's no such name.\n");
 }
 
 entry * create_entry_node(char *name, char *phone) 
@@ -178,7 +178,7 @@ entry *load_entries(FILE *fp)
     [^,\n] Square brackets are used to indicate a set of allowed
     characters [abc] means only a, b, or c. With the ^, it's
     used to specify a set of disallowed characters. So [^abc]
-    means any character except a, b, or c. [^,] means any
+    means any character *except* a, b, or c. [^,] means any
     character except a , [^,\n] means any character except a
     comma(,) or a newline(\n).
     %20[^,\n] will match a string of characters with a maximum length
@@ -229,7 +229,7 @@ void list(FILE *db_file)
         count++;
     }
 
-    printf("Total entries :  %d\n",count);
+    printf("Total entries : %d\n",count);
 
     free_entries(base);
 }
@@ -240,7 +240,7 @@ int delete(FILE *db_file, char *name)
     entry *p = load_entries(db_file);
     entry *base = p;
     entry *prev = NULL;
-    entry del = NULL ; / Node to be deleted */
+    entry *del = NULL ; /* Node to be deleted */
     int deleted = 0;
     while(p!=NULL) 
     {
